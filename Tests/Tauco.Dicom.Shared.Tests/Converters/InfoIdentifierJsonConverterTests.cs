@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 using NUnit.Framework;
 
 using Tauco.Dicom.Shared.Converters;
-using Tauco.Tests.Fakes;
 
 namespace Tauco.Dicom.Shared.Tests.Converters
 {

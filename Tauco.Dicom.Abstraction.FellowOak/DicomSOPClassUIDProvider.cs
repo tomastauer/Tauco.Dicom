@@ -3,7 +3,6 @@
 using Dicom;
 
 using Tauco.Dicom.Shared;
-using Tauco.Dicom.Shared.Model;
 
 namespace Tauco.Dicom.Abstraction.FellowOak
 {

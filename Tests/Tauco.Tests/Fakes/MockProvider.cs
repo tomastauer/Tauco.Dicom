@@ -14,7 +14,6 @@ using Tauco.Dicom.Abstraction;
 using Tauco.Dicom.Models;
 using Tauco.Dicom.Network;
 using Tauco.Dicom.Shared;
-using Tauco.Dicom.Shared.Model;
 
 namespace Tauco.Tests.Fakes
 {
@@ -74,11 +73,7 @@ namespace Tauco.Tests.Fakes
 
             dicomClient.When(c => c.AddFindRequest(Arg.Any<IDicomFindRequest<TestInfo>>())).Do(c =>
             {
-                var findRequest = c.Arg<IDicomFindRequest<TestInfo>>();
-                if (findRequest == null)
-                {
-                    findRequest = Substitute.For<IDicomFindRequest<TestInfo>>();
-                }
+                var findRequest = c.Arg<IDicomFindRequest<TestInfo>>() ?? Substitute.For<IDicomFindRequest<TestInfo>>();
 
                 findRequest.ResponseCallback(new TestInfo
                 {

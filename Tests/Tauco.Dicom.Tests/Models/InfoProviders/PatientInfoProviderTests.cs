@@ -4,17 +4,12 @@ using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
-using Castle.Windsor;
-
 using NSubstitute;
-using NSubstitute.Core;
 
 using NUnit.Framework;
 
-using Tauco.Cache;
 using Tauco.Dicom.Models;
 using Tauco.Dicom.Network;
 using Tauco.Dicom.Shared;

@@ -12,7 +12,6 @@ using NUnit.Framework;
 using Tauco.Dicom.Abstraction;
 using Tauco.Dicom.Network;
 using Tauco.Dicom.Shared;
-using Tauco.Dicom.Shared.Model;
 using Tauco.Tests;
 using Tauco.Tests.Fakes;
 

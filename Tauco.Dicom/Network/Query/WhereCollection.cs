@@ -38,7 +38,7 @@ namespace Tauco.Dicom.Network
 
                     foreach (var item in whereItem)
                     {
-                        Expression itemExpression = null;
+                        Expression itemExpression;
 
                         switch (item.Operator)
                         {

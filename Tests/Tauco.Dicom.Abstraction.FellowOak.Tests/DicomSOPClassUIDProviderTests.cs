@@ -6,7 +6,6 @@ using Dicom;
 using NUnit.Framework;
 
 using Tauco.Dicom.Models;
-using Tauco.Dicom.Models.InfoObjects;
 
 namespace Tauco.Dicom.Abstraction.FellowOak.Tests
 {

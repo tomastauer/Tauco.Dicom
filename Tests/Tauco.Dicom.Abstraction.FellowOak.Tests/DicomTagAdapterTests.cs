@@ -1,6 +1,4 @@
-﻿using System;
-
-using Dicom;
+﻿using Dicom;
 
 using NUnit.Framework;
 

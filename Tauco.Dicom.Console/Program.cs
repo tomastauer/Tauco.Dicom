@@ -13,9 +13,15 @@ namespace Tauco.Dicom.Console
     {
         static void Main(string[] args)
         {
+            if (!File.Exists("NLog.config"))
+            {
+                System.Console.Error.WriteLine("Could not found NLog.config, terminating");
+                return;
+            }
+
             var originalOut = System.Console.Out;
             System.Console.SetOut(TextWriter.Null);
-
+            
             var installer = new Installer();
             var container = new WindsorContainer().Install(new CommonInstaller());
             installer.Install(container);

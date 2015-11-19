@@ -1,10 +1,12 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 using NUnit.Framework;
 
 namespace Tauco.Dicom.Shared.Tests
 {
     [TestFixture]
+    [SuppressMessage("ReSharper", "UnusedMember.Local")]
     public class DicomMappingTests
     {
         [Test]

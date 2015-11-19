@@ -141,7 +141,7 @@ namespace Tauco.Cache.Tests
         {
             // Act
             mCacheProvider.Store("test", "test");
-            mCacheProvider.Store("test", "test2", false);
+            mCacheProvider.Store("test", "test2");
             var result = mCacheProvider.Retrieve<string>("test");
 
             // Assert

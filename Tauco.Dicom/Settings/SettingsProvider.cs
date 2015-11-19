@@ -69,12 +69,7 @@ namespace Tauco.Dicom
             }
 
             var value = ConfigurationManager.AppSettings[key];
-
-            if (value == null)
-            {
-                throw new ArgumentException("There is no setting with the key available.", nameof(key));
-            }
-
+            
             return value;
         }
 
@@ -95,13 +90,12 @@ namespace Tauco.Dicom
 
             var stringValue = GetStringValue(key);
 
-            int result = 0;
+            int result;
             if (int.TryParse(stringValue, out result))
             {
-                return result;
             }
 
-            throw new ArgumentException("Setting is not of integer type", nameof(key));
+            return result;
         }
     }
 }

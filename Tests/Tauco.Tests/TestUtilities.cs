@@ -25,7 +25,7 @@ namespace Tauco.Tests
                 throw new ArgumentException("Constructor could not be found");
             }
 
-            for (int i = 0; i < arguments.Count(); i++)
+            for (int i = 0; i < arguments.Count; i++)
             {
                 object[] args = arguments.Select(a => a()).ToArray();
                 args[i] = null;

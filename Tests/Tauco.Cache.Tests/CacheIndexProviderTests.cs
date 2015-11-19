@@ -1,8 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+
+using NUnit.Framework;
 
 namespace Tauco.Cache.Tests
 {
     [TestFixture]
+    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Local")]
     public class CacheIndexProviderTests
     {
         [Test]

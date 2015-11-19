@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 using NUnit.Framework;
 
-using Tauco.Dicom.Models;
 using Tauco.Tests;
 using Tauco.Tests.Fakes;
 

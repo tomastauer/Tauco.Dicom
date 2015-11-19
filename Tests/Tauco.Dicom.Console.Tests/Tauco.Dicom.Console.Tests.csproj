@@ -36,11 +36,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NSubstitute, Version=1.8.2.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NSubstitute.1.8.2.0\lib\net45\NSubstitute.dll</HintPath>
+      <HintPath>..\..\packages\NSubstitute.1.8.2.0\lib\net45\NSubstitute.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -65,22 +66,26 @@
     <Compile Include="TypeHandlerSelectorTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tauco.Dicom.Console\Tauco.Dicom.Console.csproj">
+    <ProjectReference Include="..\..\Tauco.Dicom.Console\Tauco.Dicom.Console.csproj">
       <Project>{b99de59c-4963-469a-a6c9-904be3471f2e}</Project>
       <Name>Tauco.Dicom.Console</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tauco.Dicom.Shared\Tauco.Dicom.Shared.csproj">
+    <ProjectReference Include="..\..\Tauco.Dicom.Shared\Tauco.Dicom.Shared.csproj">
       <Project>{5B62E4D0-5AAB-488B-92AE-0C506958F3AD}</Project>
       <Name>Tauco.Dicom.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tauco.DICOM\Tauco.Dicom.csproj">
+    <ProjectReference Include="..\..\Tauco.DICOM\Tauco.Dicom.csproj">
       <Project>{0b5c0580-d105-4464-9918-accd1940365d}</Project>
       <Name>Tauco.Dicom</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tests\Tauco.Tests\Tauco.Tests.csproj">
+    <ProjectReference Include="..\Tauco.Tests\Tauco.Tests.csproj">
       <Project>{f4513db8-3afd-42ac-ac1d-9f8d453c611c}</Project>
       <Name>Tauco.Tests</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

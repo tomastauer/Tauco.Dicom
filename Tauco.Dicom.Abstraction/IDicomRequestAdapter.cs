@@ -1,7 +1,6 @@
 ﻿using JetBrains.Annotations;
 
 using Tauco.Dicom.Shared;
-using Tauco.Dicom.Shared.Model;
 
 namespace Tauco.Dicom.Abstraction
 {
@@ -9,7 +8,7 @@ namespace Tauco.Dicom.Abstraction
     /// Provides methods for creating third party DICOM compatible requests.
     /// </summary>
     /// <typeparam name="TInfo">Specifies type of DICOM object the request is related to</typeparam>
-    public interface IDicomRequestAdapter<TInfo> where TInfo : IDicomInfo, new()
+    public interface IDicomRequestAdapter<out TInfo> where TInfo : IDicomInfo, new()
     {
         /// <summary>
         /// Get C-FIND DICOM request from given <paramref name="findRequest"/>.

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 using Nito.AsyncEx;
 
-using Tauco.Dicom.Models.InfoObjects;
+using Tauco.Dicom.Models;
 
 namespace Tauco.Dicom.Utilities
 {

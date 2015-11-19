@@ -85,7 +85,6 @@
     <Compile Include="DicomMapping.cs" />
     <Compile Include="Model\DicomInfoType.cs" />
     <Compile Include="Model\DicomTag.cs" />
-    <Compile Include="Model\DicomUID.cs" />
     <Compile Include="Model\Gender.cs" />
     <Compile Include="Model\IBirthNumberParser.cs" />
     <Compile Include="Model\IDicomInfo.cs" />

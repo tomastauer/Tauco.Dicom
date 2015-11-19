@@ -4,11 +4,8 @@ using System.Linq;
 
 using NUnit.Framework;
 
-using Tauco.Dicom.Models;
 using Tauco.Dicom.Network;
 using Tauco.Dicom.Shared;
-using Tauco.Dicom.Shared.Model;
-using Tauco.Dicom.Utilities;
 using Tauco.Tests.Fakes;
 
 namespace Tauco.Dicom.Tests.Network

@@ -29,7 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{784DE2D3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tauco.Dicom.Console", "Tauco.Dicom.Console\Tauco.Dicom.Console.csproj", "{B99DE59C-4963-469A-A6C9-904BE3471F2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tauco.Dicom.Console.Tests", "Tauco.Dicom.Console.Tests\Tauco.Dicom.Console.Tests.csproj", "{60AB82FE-3088-4335-BA61-C50BF6F8384E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tauco.Dicom.Console.Tests", "Tests\Tauco.Dicom.Console.Tests\Tauco.Dicom.Console.Tests.csproj", "{60AB82FE-3088-4335-BA61-C50BF6F8384E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

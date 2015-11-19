@@ -5,7 +5,6 @@ using Dicom.Network;
 using JetBrains.Annotations;
 
 using Tauco.Dicom.Shared;
-using Tauco.Dicom.Shared.Model;
 
 namespace Tauco.Dicom.Abstraction.FellowOak
 {

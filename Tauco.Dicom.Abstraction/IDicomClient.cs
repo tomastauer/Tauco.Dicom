@@ -4,14 +4,13 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 
 using Tauco.Dicom.Shared;
-using Tauco.Dicom.Shared.Model;
 
 namespace Tauco.Dicom.Abstraction
 {
     /// <summary>
     /// Represents DICOM client with methods suitable for sending request to DICOM servers.
     /// </summary>
-    public interface IDicomClient<TInfo> : IDisposable where TInfo : IDicomInfo
+    public interface IDicomClient<out TInfo> : IDisposable where TInfo : IDicomInfo
     {
         /// <summary>
         /// Adds new C-FIND request to the client's queue.

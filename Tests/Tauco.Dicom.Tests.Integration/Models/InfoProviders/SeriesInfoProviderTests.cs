@@ -1,6 +1,5 @@
-﻿using System.Linq;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 using Castle.Windsor;
 
@@ -13,6 +12,7 @@ using Tauco.Dicom.Shared;
 namespace Tauco.Dicom.Tests.Integration.Models
 {
     [TestFixture]
+    [SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
     public class SeriesInfoProviderTests
     {
         private ISeriesInfoProvider mSeriesInfoProvider;

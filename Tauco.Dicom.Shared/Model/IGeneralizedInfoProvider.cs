@@ -1,4 +1,4 @@
-﻿namespace Tauco.Dicom.Shared.Model
+﻿namespace Tauco.Dicom.Shared
 {
     /// <summary>
     /// Provides method for obtaining single instance of every implementation of <see cref="IDicomInfo"/>.

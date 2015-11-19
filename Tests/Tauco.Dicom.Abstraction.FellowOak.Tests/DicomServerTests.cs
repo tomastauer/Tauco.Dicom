@@ -7,7 +7,6 @@ using Castle.Core.Logging;
 using NUnit.Framework;
 
 using Tauco.Dicom.Shared;
-using Tauco.Dicom.Shared.Model;
 using Tauco.Tests.Fakes;
 
 namespace Tauco.Dicom.Abstraction.FellowOak.Tests

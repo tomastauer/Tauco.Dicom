@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Dicom;
 using Dicom.Network;
 
-using NSubstitute;
-
 using NUnit.Framework;
 
 using Tauco.Dicom.Shared;
-using Tauco.Dicom.Shared.Model;
 using Tauco.Tests;
 using Tauco.Tests.Fakes;
 

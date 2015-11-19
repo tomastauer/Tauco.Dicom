@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
@@ -12,8 +11,6 @@ using NSubstitute;
 using NUnit.Framework;
 
 using Tauco.Dicom.Shared;
-using Tauco.Dicom.Shared.Model;
-using Tauco.Tests;
 using Tauco.Tests.Fakes;
 
 namespace Tauco.Dicom.Abstraction.FellowOak.Tests
@@ -46,10 +43,7 @@ namespace Tauco.Dicom.Abstraction.FellowOak.Tests
         [Test]
         public void Constructor_NullLogger_ThrowsException()
         {
-            // Arrange
-            var mockProvider = new MockProvider();
-
-            // Act + Assert
+            // Arrange + Act + Assert
             Assert.That(() => new DicomStore(new MemoryStream(), (a, b) => new MemoryStream(), null), Throws.InstanceOf<ArgumentNullException>());
         }
 
@@ -185,7 +179,6 @@ namespace Tauco.Dicom.Abstraction.FellowOak.Tests
 
         private DicomStore GetDicomStore(ILogger logger)
         {
-            var mockProvider = new MockProvider();
             return new DicomStore(new MemoryStream(), (a, b) => new MemoryStream(), logger);
         }
     }

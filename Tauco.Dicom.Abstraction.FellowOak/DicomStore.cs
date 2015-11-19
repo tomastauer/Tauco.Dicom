@@ -9,7 +9,6 @@ using Dicom.Network;
 using JetBrains.Annotations;
 
 using Tauco.Dicom.Shared;
-using Tauco.Dicom.Shared.Model;
 
 namespace Tauco.Dicom.Abstraction.FellowOak
 {
@@ -110,7 +109,7 @@ namespace Tauco.Dicom.Abstraction.FellowOak
         /// </summary>
         public void OnReceiveAssociationReleaseRequest()
         {
-            mLogger.Info($"Dicom store has received an association release request.");
+            mLogger.Info("Dicom store has received an association release request.");
             SendAssociationReleaseResponse();
         }
 

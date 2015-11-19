@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 using Tauco.Cache;
-using Tauco.Dicom.Models.InfoObjects;
 using Tauco.Dicom.Shared;
 
 namespace Tauco.Dicom.Models

@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 
 using Tauco.Dicom.Abstraction;
 using Tauco.Dicom.Shared;
-using Tauco.Dicom.Shared.Model;
 
 namespace Tauco.Dicom.Network
 {

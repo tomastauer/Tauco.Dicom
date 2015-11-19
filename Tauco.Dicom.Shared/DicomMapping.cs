@@ -6,8 +6,6 @@ using System.Reflection;
 
 using JetBrains.Annotations;
 
-using Tauco.Dicom.Shared.Model;
-
 namespace Tauco.Dicom.Shared
 {
     /// <summary>
