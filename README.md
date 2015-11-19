@@ -46,6 +46,8 @@ var patient = await patientProvider.GetPatientByBirthNumberAsync("9107256444");
 > **Note:**
 
 > - Both version of birth number with and without the slash can be used.
+
+
 ###Downloading patient images
 Following code will download all patient's images to default folder (*Dicom/&lt;Patient name>/&lt;Study UID>*)
 ```csharp
