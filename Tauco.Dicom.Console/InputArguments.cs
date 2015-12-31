@@ -10,7 +10,7 @@ using Tauco.Dicom.Shared;
 namespace Tauco.Dicom.Console
 {
     /// <summary>
-    /// Represents input artuments passed when starting the program.
+    /// Represents input arguments passed when starting the program.
     /// </summary>
     internal class InputArguments
     {

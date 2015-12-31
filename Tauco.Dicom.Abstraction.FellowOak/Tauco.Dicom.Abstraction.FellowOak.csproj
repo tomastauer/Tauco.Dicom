@@ -96,6 +96,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\fo-dicom.1.1.0\build\fo-dicom.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\fo-dicom.1.1.0\build\fo-dicom.targets'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y /d "$(TargetDir)$(TargetFileName)" "$(SolutionDir)bin\"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
