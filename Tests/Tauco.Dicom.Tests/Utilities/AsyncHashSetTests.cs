@@ -6,7 +6,7 @@ using Nito.AsyncEx;
 
 using NUnit.Framework;
 
-using Tauco.Dicom.Models;
+using Tauco.Dicom.Shared;
 using Tauco.Dicom.Utilities;
 
 namespace Tauco.Dicom.Tests.Utilities

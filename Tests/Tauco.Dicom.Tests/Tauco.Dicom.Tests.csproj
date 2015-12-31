@@ -124,9 +124,6 @@
       <Link>Properties\GeneralAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Models\GeneralizedInfoProviderTests.cs" />
-    <Compile Include="Models\InfoObjects\PatientInfoTests.cs" />
-    <Compile Include="Models\InfoObjects\SeriesInfoTests.cs" />
-    <Compile Include="Models\InfoObjects\StudyInfoTests.cs" />
     <Compile Include="Models\InfoProviders\PatientInfoProviderTests.cs" />
     <Compile Include="Models\InfoProviders\SeriesInfoProviderTests.cs" />
     <Compile Include="Models\InfoProviders\StudyInfoProviderTests.cs" />

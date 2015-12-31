@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 
 using Tauco.Dicom.Models;
 using Tauco.Dicom.Network;
+using Tauco.Dicom.Shared;
 
 namespace Tauco.Dicom.Console
 {

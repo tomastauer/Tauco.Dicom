@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 using Tauco.Cache;
-using Tauco.Dicom.Shared;
 
-namespace Tauco.Dicom.Models
+namespace Tauco.Dicom.Shared
 {
     /// <summary>
     /// Represents single Dicom patient object.

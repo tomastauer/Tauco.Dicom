@@ -45,10 +45,10 @@ namespace Tauco.Dicom.Abstraction.FellowOak.Tests
         {
             // Arrange
             var mockProvider = new MockProvider();
-            var fellowOakMockProvider = new FelloOakMockProvider();
+            var fellowOakMockProvider = new FellowOakMockProvider();
             var requestAdapter = mockProvider.GetRequestAdapterFake();
             var dicomClient = new DicomClient<TestInfo>(mockProvider.GetSettingsProviderFake(), requestAdapter);
-            var dicomFindRequest = new FellowOakDicomFindRequest<TestInfo>(mockProvider.GetDicomMappingFake(),fellowOakMockProvider.GetDicomTagAdapterFake(),mockProvider.GetGeneralizedInfoProviderFake(), mockProvider.GetMappingEngine(),fellowOakMockProvider.GetDicomSopClassUidProviderFake(),c=> {},mockProvider.GetDicomWhereCollectionFake());
+            var dicomFindRequest = new FellowOakDicomFindRequest<TestInfo>(mockProvider.GetDicomMappingFake(),fellowOakMockProvider.GetDicomTagAdapterFake(), fellowOakMockProvider.GetDicomInfoBuilderFake(), mockProvider.GetGeneralizedInfoProviderFake(), fellowOakMockProvider.GetDicomSopClassUidProviderFake(), c=> {},mockProvider.GetDicomWhereCollectionFake());
 
             // Act
             dicomClient.AddFindRequest(dicomFindRequest);

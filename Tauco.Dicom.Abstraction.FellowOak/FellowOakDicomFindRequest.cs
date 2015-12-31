@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Reflection;
 
-using AutoMapper;
-
 using Dicom;
 using Dicom.Network;
 
@@ -20,7 +18,7 @@ namespace Tauco.Dicom.Abstraction.FellowOak
     {
         private readonly IDicomMapping mDicomMapping;
         private readonly IDicomTagAdapter mDicomTagAdapter;
-        private readonly IMappingEngine mMappingEngine;
+        private readonly IDicomInfoBuilder mDicomInfoBuilder;
         private readonly DicomCFindRequest mInnerRequest;
 
 
@@ -32,20 +30,19 @@ namespace Tauco.Dicom.Abstraction.FellowOak
         /// Provides method for obtaining third party DICOM tag representation from the
         /// <see cref="DicomTags" />
         /// </param>
+        /// <param name="dicomInfoBuilder"></param>
         /// <param name="generalizedInfoProvider">
         /// Collection containing single object for all implementation of
         /// <see cref="IDicomInfo" />
         /// </param>
-        /// <param name="mappingEngine">Performs mapping based on configuration</param>
         /// <param name="dicomSopClassUidProvider">Provides method for obtaining Dicom Service-object pair class UID for given <see cref="IDicomInfo"/></param>
         /// <param name="actionCallback">Specifies action fired once the response is loaded</param>
         /// <param name="dicomDicomWhereCollection">Collection containing constraints used for filtering requested items suitable for DICOM C-FIND requests.</param>
         /// <exception cref="ArgumentNullException"><paramref name="dicomMapping"/> is <see langword="null" /> -or- <paramref name="dicomTagAdapter"/> is 
-        /// <see langword="null" /> -or- <paramref name="generalizedInfoProvider"/> is <see langword="null" /> -or- <see cref="mappingEngine"/> is <see langword="null"/> -or-
+        /// <see langword="null" /> -or- <paramref name="dicomInfoBuilder"/> is <see langword="null" /> -or- <paramref name="generalizedInfoProvider"/> is <see langword="null" /> -or- <see cref="mappingEngine"/> is <see langword="null"/> -or-
         /// <see cref="dicomSopClassUidProvider"/> is <see langword="null"/> -or- <see cref="actionCallback"/> is <see langword="null"/> -or- <see cref="dicomDicomWhereCollection"/> is <see langword="null"/>
         /// </exception>
-        public FellowOakDicomFindRequest([NotNull] IDicomMapping dicomMapping, [NotNull] IDicomTagAdapter dicomTagAdapter, [NotNull] IGeneralizedInfoProvider generalizedInfoProvider,
-            [NotNull] IMappingEngine mappingEngine, [NotNull] IDicomSOPClassUIDProvider dicomSopClassUidProvider, [NotNull] Action<TInfo> actionCallback,
+        public FellowOakDicomFindRequest([NotNull] IDicomMapping dicomMapping, [NotNull] IDicomTagAdapter dicomTagAdapter, [NotNull] IDicomInfoBuilder dicomInfoBuilder, [NotNull] IGeneralizedInfoProvider generalizedInfoProvider, [NotNull] IDicomSOPClassUIDProvider dicomSopClassUidProvider, [NotNull] Action<TInfo> actionCallback,
             [NotNull] IDicomWhereCollection dicomDicomWhereCollection)
         {
             if (dicomMapping == null)
@@ -56,13 +53,13 @@ namespace Tauco.Dicom.Abstraction.FellowOak
             {
                 throw new ArgumentNullException(nameof(dicomTagAdapter));
             }
+            if (dicomInfoBuilder == null)
+            {
+                throw new ArgumentNullException(nameof(dicomInfoBuilder));
+            }
             if (generalizedInfoProvider == null)
             {
                 throw new ArgumentNullException(nameof(generalizedInfoProvider));
-            }
-            if (mappingEngine == null)
-            {
-                throw new ArgumentNullException(nameof(mappingEngine));
             }
             if (dicomSopClassUidProvider == null)
             {
@@ -79,7 +76,7 @@ namespace Tauco.Dicom.Abstraction.FellowOak
 
             mDicomMapping = dicomMapping;
             mDicomTagAdapter = dicomTagAdapter;
-            mMappingEngine = mappingEngine;
+            mDicomInfoBuilder = dicomInfoBuilder;
             ResponseCallback = actionCallback;
             DicomWhereCollection = dicomDicomWhereCollection;
             TInfo generalizedInfo = generalizedInfoProvider.GetGeneralizedInfo<TInfo>();
@@ -133,19 +130,7 @@ namespace Tauco.Dicom.Abstraction.FellowOak
                     return;
                 }
 
-                TInfo responseItem = new TInfo();
-                Type responseType = responseItem.GetType();
-
-                foreach (var item in mDicomMapping)
-                {
-                    PropertyInfo propertyInfo = responseType.GetProperty(item.Key.Name);
-                    object result = mMappingEngine.DynamicMap(response.Dataset.Get<string>((DicomTag) mDicomTagAdapter.GetDicomTag(item.Value)), typeof (string),
-                        propertyInfo.PropertyType);
-
-                    propertyInfo.SetValue(responseItem, result);
-                }
-
-                ResponseCallback(responseItem);
+                ResponseCallback(mDicomInfoBuilder.BuildInfo<TInfo>(response.Dataset));
             };
         }
 

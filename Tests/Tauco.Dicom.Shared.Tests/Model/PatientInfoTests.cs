@@ -4,10 +4,7 @@ using Newtonsoft.Json;
 
 using NUnit.Framework;
 
-using Tauco.Dicom.Models;
-using Tauco.Dicom.Shared;
-
-namespace Tauco.Dicom.Tests.Models
+namespace Tauco.Dicom.Shared.Tests
 {
     [TestFixture]
     [SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]

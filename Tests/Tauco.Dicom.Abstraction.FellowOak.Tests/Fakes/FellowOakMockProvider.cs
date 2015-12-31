@@ -6,7 +6,7 @@ using Tauco.Dicom.Shared;
 
 namespace Tauco.Dicom.Abstraction.FellowOak.Tests
 {
-    internal class FelloOakMockProvider
+    internal class FellowOakMockProvider
     {
         public IDicomSOPClassUIDProvider GetDicomSopClassUidProviderFake()
         {
@@ -14,6 +14,14 @@ namespace Tauco.Dicom.Abstraction.FellowOak.Tests
             dicomSopClassUidProvider.GetDicomSOPClassUid(Arg.Any<IDicomInfo>()).Returns(DicomUID.PatientRootQueryRetrieveInformationModelFIND);
 
             return dicomSopClassUidProvider;
+        }
+
+
+        public IDicomInfoBuilder GetDicomInfoBuilderFake()
+        {
+            var dicomInfoBuidler = Substitute.For<IDicomInfoBuilder>();
+
+            return dicomInfoBuidler;
         }
 
 

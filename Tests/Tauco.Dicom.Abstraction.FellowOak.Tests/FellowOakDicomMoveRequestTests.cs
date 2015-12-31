@@ -9,7 +9,7 @@ namespace Tauco.Dicom.Abstraction.FellowOak.Tests
 {
     [TestFixture]
     [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
-    public class DicomMoveRequestTests
+    public class FellowOakDicomMoveRequestTests
     {
         [Test]
         public void Constructor_NullDestinationAE_ThrowsException()

@@ -74,20 +74,25 @@
     </Compile>
     <Compile Include="DicomClientFactoryTests.cs" />
     <Compile Include="DicomClientTests.cs" />
-    <Compile Include="DicomFindRequestTests.cs" />
-    <Compile Include="DicomMoveRequestTests.cs" />
+    <Compile Include="FellowOakDicomdirFileParserTests.cs" />
+    <Compile Include="FellowOakDicomFindRequestTests.cs" />
+    <Compile Include="DicomInfoBuilderTests.cs" />
+    <Compile Include="FellowOakDicomMoveRequestTests.cs" />
     <Compile Include="DicomRequestAdapterTests.cs" />
     <Compile Include="DicomServerFactoryTests.cs" />
     <Compile Include="DicomServerTests.cs" />
     <Compile Include="DicomSOPClassUIDProviderTests.cs" />
     <Compile Include="DicomStoreTests.cs" />
     <Compile Include="DicomTagAdapterTests.cs" />
-    <Compile Include="Fakes\MockProvider.cs" />
+    <Compile Include="Fakes\FellowOakMockProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <Content Include="Assets\testImage.dcm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\DICOMDIR">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />

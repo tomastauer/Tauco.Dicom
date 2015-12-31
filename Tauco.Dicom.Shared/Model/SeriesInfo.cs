@@ -3,24 +3,23 @@
 using Newtonsoft.Json;
 
 using Tauco.Cache;
-using Tauco.Dicom.Shared;
 
-namespace Tauco.Dicom.Models
+namespace Tauco.Dicom.Shared
 {
     /// <summary>
-    /// Represents single Dicom study object.
+    /// Represents single Dicom series.
     /// </summary>
-    public class StudyInfo : IDicomInfo
+    public class SeriesInfo : IDicomInfo
     {
-        private InfoIdentifier mStudyInstanceUid;
+        private InfoIdentifier mSeriesInstanceUid;
         private bool mGetHashCodeCalled;
 
 
         /// <summary>
-        /// Gets or sets patient identifier (birth number).
+        /// Gets or sets study unique identifier.
         /// </summary>
-        [Dicom(DicomTags.PatientID)]
-        public BirthNumber PatientID
+        [Dicom(DicomTags.StudyInstanceUID)]
+        public InfoIdentifier StudyInstanceUID
         {
             get;
             set;
@@ -28,15 +27,15 @@ namespace Tauco.Dicom.Models
 
 
         /// <summary>
-        /// Gets or sets study unique identifier.
+        /// Gets or sets series unique identifier.
         /// </summary>
-        [Dicom(DicomTags.StudyInstanceUID)]
+        [Dicom(DicomTags.SeriesInstanceUID)]
         [CacheIndex]
-        public InfoIdentifier StudyInstanceUID
+        public InfoIdentifier SeriesInstanceUID
         {
             get
             {
-                return mStudyInstanceUid;
+                return mSeriesInstanceUid;
             }
             set
             {
@@ -44,8 +43,20 @@ namespace Tauco.Dicom.Models
                 {
                     throw new InvalidOperationException("Hash code for the object has already been obtained, cannot change the dependent properties");
                 }
-                mStudyInstanceUid = value;
+
+                mSeriesInstanceUid = value;
             }
+        }
+
+
+        /// <summary>
+        /// Gets or sets series modality. Most common values are MR, CT, US
+        /// </summary>
+        [Dicom(DicomTags.Modality)]
+        public string Modality
+        {
+            get;
+            set;
         }
 
 
@@ -55,19 +66,19 @@ namespace Tauco.Dicom.Models
         /// Represents type of the dicom object.
         /// </summary>
         [JsonIgnore]
-        public DicomInfoType DicomType => DicomInfoType.Study;
+        public DicomInfoType DicomType => DicomInfoType.Series;
 
         #endregion
 
 
         /// <summary>
-        /// Compares with another <see cref="StudyInfo"/> info and returns whether their UID equals.
+        /// Compares with another <see cref="SeriesInfo"/> info and returns whether their UID equals.
         /// </summary>
         /// <param name="other">Other patient info to be checked</param>
         /// <returns>True, if patient IDs are equals; otherwise, false</returns>
-        protected bool Equals(StudyInfo other)
+        protected bool Equals(SeriesInfo other)
         {
-            return Equals(StudyInstanceUID, other.StudyInstanceUID);
+            return Equals(SeriesInstanceUID, other.SeriesInstanceUID);
         }
 
 
@@ -90,12 +101,12 @@ namespace Tauco.Dicom.Models
             {
                 return false;
             }
-            return Equals((StudyInfo) obj);
+            return Equals((SeriesInfo)obj);
         }
 
 
         /// <summary>
-        /// Returns the hash code for the <see cref="StudyInfo"/>.
+        /// Returns the hash code for the <see cref="SeriesInfo"/>.
         /// </summary>
         /// <remarks>
         /// Since calling of this method sets up flag internally, it cannot be longer considered as pure.
@@ -107,7 +118,7 @@ namespace Tauco.Dicom.Models
         {
             mGetHashCodeCalled = true;
 
-            return StudyInstanceUID?.GetHashCode() ?? 0;
+            return SeriesInstanceUID?.GetHashCode() ?? 0;
         }
     }
 }

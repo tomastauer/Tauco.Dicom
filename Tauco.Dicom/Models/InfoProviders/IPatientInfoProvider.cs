@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 
 using Tauco.Dicom.Network;
+using Tauco.Dicom.Shared;
 
 namespace Tauco.Dicom.Models
 {

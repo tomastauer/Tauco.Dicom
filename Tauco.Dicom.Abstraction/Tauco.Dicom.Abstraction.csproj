@@ -57,7 +57,9 @@
     </Compile>
     <Compile Include="IDicomClient.cs" />
     <Compile Include="IDicomClientFactory.cs" />
+    <Compile Include="IDicomdirFileParser.cs" />
     <Compile Include="IDicomFindRequest.cs" />
+    <Compile Include="IDicomInfoBuilder.cs" />
     <Compile Include="IDicomMoveRequest.cs" />
     <Compile Include="IDicomServer.cs" />
     <Compile Include="IDicomServerFactory.cs" />

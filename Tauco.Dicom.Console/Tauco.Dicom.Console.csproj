@@ -79,7 +79,7 @@
     <Compile Include="..\Tauco.Dicom\Properties\GeneralAssemblyInfo.cs">
       <Link>Properties\GeneralAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="CommonInstaller.cs" />
+    <Compile Include="Installer.cs" />
     <Compile Include="InputArguments.cs" />
     <Compile Include="InputSettingsProvider.cs" />
     <Compile Include="ITypeHandler.cs" />

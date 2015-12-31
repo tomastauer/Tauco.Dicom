@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Tauco.Dicom.Models
+namespace Tauco.Dicom.Shared
 {
     /// <summary>
     /// Specifies that the <typeparamref name="TInfo"/> can be present in several instances, however all instances should be considered as the same object.

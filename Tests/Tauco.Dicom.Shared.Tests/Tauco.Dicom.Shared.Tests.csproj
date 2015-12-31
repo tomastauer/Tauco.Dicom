@@ -81,7 +81,10 @@
     <Compile Include="Model\BirthNumberTests.cs" />
     <Compile Include="Model\DicomAttributeTests.cs" />
     <Compile Include="Model\InfoIdentifierTests.cs" />
+    <Compile Include="Model\PatientInfoTests.cs" />
     <Compile Include="Model\PatientNameTests.cs" />
+    <Compile Include="Model\SeriesInfoTests.cs" />
+    <Compile Include="Model\StudyInfoTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

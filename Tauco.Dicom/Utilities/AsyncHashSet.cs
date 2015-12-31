@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Nito.AsyncEx;
 
 using Tauco.Dicom.Models;
+using Tauco.Dicom.Shared;
 
 namespace Tauco.Dicom.Utilities
 {

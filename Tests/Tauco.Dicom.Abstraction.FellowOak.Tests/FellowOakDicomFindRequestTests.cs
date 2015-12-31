@@ -5,6 +5,8 @@ using System.Linq;
 using Dicom;
 using Dicom.Network;
 
+using NSubstitute;
+
 using NUnit.Framework;
 
 using Tauco.Dicom.Shared;
@@ -14,19 +16,19 @@ using Tauco.Tests.Fakes;
 namespace Tauco.Dicom.Abstraction.FellowOak.Tests
 {
     [TestFixture]
-    public class DicomFindRequestTests
+    public class FellowOakDicomFindRequestTests
     {
         [Test]
         public void Constructor_ArgumentsCombinations()
         {
             var mockProvider = new MockProvider();
-            var fellowOakMockProvider = new FelloOakMockProvider();
+            var fellowOakMockProvider = new FellowOakMockProvider();
             TestUtilities.TestConstructorArgumentsNullCombinations(typeof(FellowOakDicomFindRequest<>), new[] { typeof(TestInfo) }, new List<Func<object>>
             {
                 mockProvider.GetDicomMappingFake,
                 fellowOakMockProvider.GetDicomTagAdapterFake,
+                fellowOakMockProvider.GetDicomInfoBuilderFake,
                 mockProvider.GetGeneralizedInfoProviderFake,
-                mockProvider.GetMappingEngine,
                 fellowOakMockProvider.GetDicomSopClassUidProviderFake,
                 GetActionFake,
                 mockProvider.GetDicomWhereCollectionFake
@@ -39,13 +41,13 @@ namespace Tauco.Dicom.Abstraction.FellowOak.Tests
         {
             // Arrange
             var mockProvider = new MockProvider();
-            var fellowOakMockProvider = new FelloOakMockProvider();
+            var fellowOakMockProvider = new FellowOakMockProvider();
             var whereCollection = mockProvider.GetWhereCollection();
             whereCollection.WhereEquals(DicomTags.PatientID, "PatientIDValue");
             whereCollection.WhereLike(DicomTags.PatientName, "PatientNameValue");
 
             // Act
-            var dicomFindRequest = new FellowOakDicomFindRequest<TestInfo>(mockProvider.GetDicomMappingFake(), fellowOakMockProvider.GetDicomTagAdapterFake(), mockProvider.GetGeneralizedInfoProviderFake(), mockProvider.GetMappingEngine(), fellowOakMockProvider.GetDicomSopClassUidProviderFake(), c => {}, whereCollection.GetDicomWhereCollections().First());
+            var dicomFindRequest = new FellowOakDicomFindRequest<TestInfo>(mockProvider.GetDicomMappingFake(), fellowOakMockProvider.GetDicomTagAdapterFake(), fellowOakMockProvider.GetDicomInfoBuilderFake(), mockProvider.GetGeneralizedInfoProviderFake(), fellowOakMockProvider.GetDicomSopClassUidProviderFake(), c => {}, whereCollection.GetDicomWhereCollections().First());
             var innerRequestDataset = dicomFindRequest.InnerRequest.Dataset;
 
             // Assert
@@ -59,20 +61,18 @@ namespace Tauco.Dicom.Abstraction.FellowOak.Tests
         {
             // Arrange
             var mockProvider = new MockProvider();
-            var fellowOakMockProvider = new FelloOakMockProvider();
+            var fellowOakMockProvider = new FellowOakMockProvider();
             var whereCollection = mockProvider.GetWhereCollection();
-            var responseDataset = new DicomDataset
+            var infoBuilder = fellowOakMockProvider.GetDicomInfoBuilderFake();
+            infoBuilder.BuildInfo<TestInfo>(Arg.Any<object>()).Returns(new TestInfo
             {
-                {
-                    DicomTag.PatientID, "666"
-                },
-                {
-                    DicomTag.PatientName, "patientName"
-                }
-            };
+                PatientID = 666,
+                PatientName = "patientName"
+            });
+
             var response = new DicomCFindResponse(new DicomDataset())
             {
-                Dataset = responseDataset
+                Dataset = new DicomDataset()
             };
             TestInfo responseItem = null;
             var responseAction = new Action<TestInfo>(item =>
@@ -81,7 +81,7 @@ namespace Tauco.Dicom.Abstraction.FellowOak.Tests
             });
 
             // Act
-            var dicomFindRequest = new FellowOakDicomFindRequest<TestInfo>(mockProvider.GetDicomMappingFake(), fellowOakMockProvider.GetDicomTagAdapterFake(), mockProvider.GetGeneralizedInfoProviderFake(), mockProvider.GetMappingEngine(), fellowOakMockProvider.GetDicomSopClassUidProviderFake(), responseAction, whereCollection.GetDicomWhereCollections().First());
+            var dicomFindRequest = new FellowOakDicomFindRequest<TestInfo>(mockProvider.GetDicomMappingFake(), fellowOakMockProvider.GetDicomTagAdapterFake(), infoBuilder, mockProvider.GetGeneralizedInfoProviderFake(), fellowOakMockProvider.GetDicomSopClassUidProviderFake(), responseAction, whereCollection.GetDicomWhereCollections().First());
             var innerRequest = (DicomCFindRequest)dicomFindRequest.InnerRequest;
             
             innerRequest.OnResponseReceived(null, response);
