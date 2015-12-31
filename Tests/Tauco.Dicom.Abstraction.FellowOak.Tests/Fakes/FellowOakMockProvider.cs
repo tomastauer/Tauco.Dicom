@@ -17,14 +17,6 @@ namespace Tauco.Dicom.Abstraction.FellowOak.Tests
         }
 
 
-        public IDicomInfoBuilder GetDicomInfoBuilderFake()
-        {
-            var dicomInfoBuidler = Substitute.For<IDicomInfoBuilder>();
-
-            return dicomInfoBuidler;
-        }
-
-
         public IDicomTagAdapter GetDicomTagAdapterFake()
         {
             var dicomTagAdapter = Substitute.For<IDicomTagAdapter>();

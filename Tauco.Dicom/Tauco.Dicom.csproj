@@ -118,6 +118,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IO\DicomdirFileCacheStoreProvider.cs" />
+    <Compile Include="IO\IDicomdirFileCacheStoreProvider.cs" />
     <Compile Include="Network\Query\IDicomQuery.cs" />
     <Compile Include="Properties\GeneralAssemblyInfo.cs" />
     <Compile Include="Network\DicomDataLoader.cs" />

@@ -31,8 +31,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tauco.Dicom.Console", "Tauc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tauco.Dicom.Console.Tests", "Tests\Tauco.Dicom.Console.Tests\Tauco.Dicom.Console.Tests.csproj", "{60AB82FE-3088-4335-BA61-C50BF6F8384E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester", "Tester\Tester.csproj", "{B892141D-42CC-4BB7-9AC6-CF9BE6A017D9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tauco.Dicom.Abstraction.FellowOak.Tests.Integration", "Tests\Tauco.Dicom.Abstraction.FellowOak.Tests.Integration\Tauco.Dicom.Abstraction.FellowOak.Tests.Integration.csproj", "{D6AB70D1-BE94-4C5B-863A-402F93763B26}"
 EndProject
 Global
@@ -93,10 +91,6 @@ Global
 		{60AB82FE-3088-4335-BA61-C50BF6F8384E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60AB82FE-3088-4335-BA61-C50BF6F8384E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60AB82FE-3088-4335-BA61-C50BF6F8384E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B892141D-42CC-4BB7-9AC6-CF9BE6A017D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B892141D-42CC-4BB7-9AC6-CF9BE6A017D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B892141D-42CC-4BB7-9AC6-CF9BE6A017D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B892141D-42CC-4BB7-9AC6-CF9BE6A017D9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D6AB70D1-BE94-4C5B-863A-402F93763B26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D6AB70D1-BE94-4C5B-863A-402F93763B26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6AB70D1-BE94-4C5B-863A-402F93763B26}.Release|Any CPU.ActiveCfg = Release|Any CPU

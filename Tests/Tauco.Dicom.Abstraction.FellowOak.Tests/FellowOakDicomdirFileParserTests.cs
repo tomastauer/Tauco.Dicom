@@ -6,6 +6,7 @@ using NSubstitute;
 using NUnit.Framework;
 
 using Tauco.Dicom.Shared;
+using Tauco.Tests.Fakes;
 
 namespace Tauco.Dicom.Abstraction.FellowOak.Tests
 {
@@ -25,8 +26,8 @@ namespace Tauco.Dicom.Abstraction.FellowOak.Tests
         public async void ParseDicomdir_PatientsAreParsedCorrectly()
         {
             // Arrange
-            var fellowOakMockProvider = new FellowOakMockProvider();
-            var dicomInfoBuilderFake = fellowOakMockProvider.GetDicomInfoBuilderFake();
+            var mockProvider = new MockProvider();
+            var dicomInfoBuilderFake = mockProvider.GetDicomInfoBuilderFake();
             dicomInfoBuilderFake.BuildInfo<StudyInfo>(Arg.Any<object>()).Returns(new StudyInfo { StudyInstanceUID = "1.2" });
 
             var fellowOakDicomdirFileParser = new FellowOakDicomdirFileParser(dicomInfoBuilderFake);

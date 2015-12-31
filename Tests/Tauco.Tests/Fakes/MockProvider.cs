@@ -11,6 +11,7 @@ using NSubstitute;
 
 using Tauco.Cache;
 using Tauco.Dicom.Abstraction;
+using Tauco.Dicom.IO;
 using Tauco.Dicom.Models;
 using Tauco.Dicom.Network;
 using Tauco.Dicom.Shared;
@@ -284,6 +285,21 @@ namespace Tauco.Tests.Fakes
             var seriesInfoProvider = Substitute.For<ISeriesInfoProvider>();
 
             return seriesInfoProvider;
+        }
+
+        public IDicomInfoBuilder GetDicomInfoBuilderFake()
+        {
+            var dicomInfoBuidler = Substitute.For<IDicomInfoBuilder>();
+
+            return dicomInfoBuidler;
+        }
+
+
+        public IDicomdirFileParser GetDicomdirFileParserFake()
+        {
+            var dicomdirFileParserFake = Substitute.For<IDicomdirFileParser>();
+
+            return dicomdirFileParserFake;
         }
     }
 }
