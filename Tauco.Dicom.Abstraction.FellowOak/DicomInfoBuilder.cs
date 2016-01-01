@@ -68,7 +68,9 @@ namespace Tauco.Dicom.Abstraction.FellowOak
             foreach (var item in mDicomMapping)
             {
                 PropertyInfo propertyInfo = resultType.GetProperty(item.Key.Name);
-                object result = mMappingEngine.DynamicMap(dataset.Get<string>((DicomTag)mDicomTagAdapter.GetDicomTag(item.Value)), typeof(string),
+                
+                var datasetResult = dataset.Get<string[]>((DicomTag)mDicomTagAdapter.GetDicomTag(item.Value));
+                object result = mMappingEngine.DynamicMap(string.Join(@"/", datasetResult ?? new string[0]), typeof(string),
                     propertyInfo.PropertyType);
 
                 propertyInfo.SetValue(resultItem, result);

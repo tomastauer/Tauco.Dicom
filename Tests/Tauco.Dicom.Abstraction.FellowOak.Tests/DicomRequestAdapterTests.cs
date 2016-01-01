@@ -26,7 +26,7 @@ namespace Tauco.Dicom.Abstraction.FellowOak.Tests
             TestUtilities.TestConstructorArgumentsNullCombinations(typeof(DicomRequestAdapter<>), new [] { typeof(TestInfo) }, new List<Func<object>>
             {
                 fellowOakMockProvider.GetDicomTagAdapterFake,
-                fellowOakMockProvider.GetDicomInfoBuilderFake,
+                mockProvider.GetDicomInfoBuilderFake,
                 mockProvider.GetGeneralizedInfoProviderFake,
                 fellowOakMockProvider.GetDicomSopClassUidProviderFake
             });
@@ -96,7 +96,7 @@ namespace Tauco.Dicom.Abstraction.FellowOak.Tests
             var mockProvider = new MockProvider();
             var fellowOakMockProvider = new FellowOakMockProvider();
 
-            return new DicomRequestAdapter<TestInfo>(fellowOakMockProvider.GetDicomTagAdapterFake(), fellowOakMockProvider.GetDicomInfoBuilderFake(), mockProvider.GetGeneralizedInfoProviderFake(),
+            return new DicomRequestAdapter<TestInfo>(fellowOakMockProvider.GetDicomTagAdapterFake(), mockProvider.GetDicomInfoBuilderFake(), mockProvider.GetGeneralizedInfoProviderFake(),
                 fellowOakMockProvider.GetDicomSopClassUidProviderFake());
         }
     }

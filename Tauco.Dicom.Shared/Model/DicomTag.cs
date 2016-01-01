@@ -33,6 +33,16 @@
         /// <summary>
         /// Specifies modality of the series (MR, CT, US).
         /// </summary>
-        Modality
+        Modality,
+        
+        /// <summary>
+        /// Unique identifier of image.
+        /// </summary>
+        ReferencedSOPInstanceUIDInFile,
+
+        /// <summary>
+        /// Specifies physical location of the image file.
+        /// </summary>
+        ReferencedFileID
     }
 }

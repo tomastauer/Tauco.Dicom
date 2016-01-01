@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO.Abstractions;
 using System.Linq;
 
 using AutoMapper;
@@ -33,6 +34,32 @@ namespace Tauco.Dicom
             RegisterFellowOak(container);
             RegisterAutoMapper(container);
             RegisterLogger(container);
+            RegisterFileSystem(container);
+            RegisterDcmdir2dcm(container);
+        }
+
+
+        /// <summary>
+        /// Registers service for the dcmdir2dcm library.
+        /// </summary>
+        /// <param name="container">Containser interface exposing all the functionality the Windsor implements.</param>
+        private static void RegisterDcmdir2dcm(IWindsorContainer container)
+        {
+            container.Register(Classes
+              .FromAssemblyNamed("dcmdir2dcm.Lib")
+              .Pick()
+              .WithService
+              .DefaultInterfaces());
+        }
+
+
+        /// <summary>
+        /// Registers service for the abstract file system.
+        /// </summary>
+        /// <param name="container">Containser interface exposing all the functionality the Windsor implements.</param>
+        private static void RegisterFileSystem(IWindsorContainer container)
+        {
+            container.Register(Component.For<IFileSystem>().UsingFactoryMethod(() => new FileSystem()));
         }
 
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 
 using NSubstitute;
 
@@ -29,11 +30,12 @@ namespace Tauco.Dicom.Abstraction.FellowOak.Tests
             var mockProvider = new MockProvider();
             var dicomInfoBuilderFake = mockProvider.GetDicomInfoBuilderFake();
             dicomInfoBuilderFake.BuildInfo<StudyInfo>(Arg.Any<object>()).Returns(new StudyInfo { StudyInstanceUID = "1.2" });
+            dicomInfoBuilderFake.BuildInfo<SeriesInfo>(Arg.Any<object>()).Returns(new SeriesInfo() { SeriesInstanceUID = "1.2" });
 
             var fellowOakDicomdirFileParser = new FellowOakDicomdirFileParser(dicomInfoBuilderFake);
         
             // Act
-            await fellowOakDicomdirFileParser.ParseDicomdirAsync("Assets/DICOMDIR");
+            await fellowOakDicomdirFileParser.ParseDicomdirAsync(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets/DICOMDIR"));
 
             // Assert
             Assert.That(() => dicomInfoBuilderFake.Received(1).BuildInfo<PatientInfo>(Arg.Any<object>()), Throws.Nothing);

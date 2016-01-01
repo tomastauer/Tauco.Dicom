@@ -27,7 +27,7 @@ namespace Tauco.Dicom.Abstraction.FellowOak.Tests
             {
                 mockProvider.GetDicomMappingFake,
                 fellowOakMockProvider.GetDicomTagAdapterFake,
-                fellowOakMockProvider.GetDicomInfoBuilderFake,
+                mockProvider.GetDicomInfoBuilderFake,
                 mockProvider.GetGeneralizedInfoProviderFake,
                 fellowOakMockProvider.GetDicomSopClassUidProviderFake,
                 GetActionFake,
@@ -47,7 +47,7 @@ namespace Tauco.Dicom.Abstraction.FellowOak.Tests
             whereCollection.WhereLike(DicomTags.PatientName, "PatientNameValue");
 
             // Act
-            var dicomFindRequest = new FellowOakDicomFindRequest<TestInfo>(mockProvider.GetDicomMappingFake(), fellowOakMockProvider.GetDicomTagAdapterFake(), fellowOakMockProvider.GetDicomInfoBuilderFake(), mockProvider.GetGeneralizedInfoProviderFake(), fellowOakMockProvider.GetDicomSopClassUidProviderFake(), c => {}, whereCollection.GetDicomWhereCollections().First());
+            var dicomFindRequest = new FellowOakDicomFindRequest<TestInfo>(mockProvider.GetDicomMappingFake(), fellowOakMockProvider.GetDicomTagAdapterFake(), mockProvider.GetDicomInfoBuilderFake(), mockProvider.GetGeneralizedInfoProviderFake(), fellowOakMockProvider.GetDicomSopClassUidProviderFake(), c => {}, whereCollection.GetDicomWhereCollections().First());
             var innerRequestDataset = dicomFindRequest.InnerRequest.Dataset;
 
             // Assert
@@ -63,7 +63,7 @@ namespace Tauco.Dicom.Abstraction.FellowOak.Tests
             var mockProvider = new MockProvider();
             var fellowOakMockProvider = new FellowOakMockProvider();
             var whereCollection = mockProvider.GetWhereCollection();
-            var infoBuilder = fellowOakMockProvider.GetDicomInfoBuilderFake();
+            var infoBuilder = mockProvider.GetDicomInfoBuilderFake();
             infoBuilder.BuildInfo<TestInfo>(Arg.Any<object>()).Returns(new TestInfo
             {
                 PatientID = 666,

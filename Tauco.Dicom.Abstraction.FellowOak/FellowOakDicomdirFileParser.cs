@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,7 +39,7 @@ namespace Tauco.Dicom.Abstraction.FellowOak
 
         /// <summary>
         /// Parses dicomdir file located at given <paramref name="dicomdirPath"/> and returns <see cref="DicomdirInfos"/> composed of collections
-        /// containing all <see cref="PatientInfo"/>, <see cref="StudyInfo"/> and <see cref="SeriesInfo"/> from the dicomdir file.
+        /// containing all <see cref="PatientInfo"/>, <see cref="StudyInfo"/>, <see cref="SeriesInfo"/> and <see cref="ImageInfo"/> from the dicomdir file.
         /// </summary>
         /// <param name="dicomdirPath">Path leading to the dicomdir file</param>
         /// <exception cref="System.IO.FileNotFoundException">Could not found file specified in <paramref name="dicomdirPath"/></exception>
@@ -49,7 +50,8 @@ namespace Tauco.Dicom.Abstraction.FellowOak
             var patientsList = new List<PatientInfo>();
             var studiesList = new List<StudyInfo>();
             var seriesList = new List<SeriesInfo>();
-
+            var imagesList = new List<ImageInfo>();
+            
             foreach (var patient in dicomDirectory.RootDirectoryRecordCollection)
             {
                 patientsList.Add(mDicomInfoBuilder.BuildInfo<PatientInfo>(patient));
@@ -62,7 +64,14 @@ namespace Tauco.Dicom.Abstraction.FellowOak
                     foreach (var series in study.LowerLevelDirectoryRecordCollection)
                     {
                         series.Add(DicomTag.StudyInstanceUID, new DicomUID(studyInfo.StudyInstanceUID, null, DicomUidType.Unknown));
-                        seriesList.Add(mDicomInfoBuilder.BuildInfo<SeriesInfo>(series));
+                        var seriesInfo = mDicomInfoBuilder.BuildInfo<SeriesInfo>(series);
+                        seriesList.Add(seriesInfo);
+
+                        foreach (var image in series.LowerLevelDirectoryRecordCollection)
+                        {
+                            image.Add(DicomTag.SeriesInstanceUID, new DicomUID(seriesInfo.SeriesInstanceUID, null, DicomUidType.Unknown));
+                            imagesList.Add(mDicomInfoBuilder.BuildInfo<ImageInfo>(image));
+                        }
                     }
                 }
             }
@@ -71,7 +80,9 @@ namespace Tauco.Dicom.Abstraction.FellowOak
             {
                 Patients = patientsList,
                 Series = seriesList,
-                Studies = studiesList
+                Studies = studiesList,
+                Images = imagesList,
+                OriginalDicomdirFileLocation = dicomdirPath
             };
         }
     }

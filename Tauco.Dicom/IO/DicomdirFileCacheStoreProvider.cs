@@ -11,7 +11,7 @@ using Tauco.Dicom.Shared;
 namespace Tauco.Dicom.IO
 {
     /// <summary>
-    /// Provides method for storing all the <see cref="PatientInfo"/>, <see cref="StudyInfo"/> and <see cref="SeriesInfo"/> obtained from the given 
+    /// Provides method for storing all the <see cref="PatientInfo"/>, <see cref="StudyInfo"/>, <see cref="SeriesInfo"/> and <see cref="ImageInfo"/> obtained from the given 
     /// DICOMDIR file in the cache. 
     /// </summary>
     /// <remarks>
@@ -57,7 +57,7 @@ namespace Tauco.Dicom.IO
 
 
         /// <summary>
-        /// Parses given <paramref name="dicomdirPath"/> and stores all the parsed <see cref="PatientInfo"/>, <see cref="StudyInfo"/> and <see cref="SeriesInfo"/> into the cache.
+        /// Parses given <paramref name="dicomdirPath"/> and stores all the parsed <see cref="PatientInfo"/>, <see cref="StudyInfo"/>, <see cref="SeriesInfo"/> and <see cref="ImageInfo"/> into the cache.
         /// </summary>
         /// <param name="dicomdirPath">Path leading to the dicomdir file</param>
         /// <exception cref="ArgumentNullException"><paramref name="dicomdirPath"/> is null</exception>

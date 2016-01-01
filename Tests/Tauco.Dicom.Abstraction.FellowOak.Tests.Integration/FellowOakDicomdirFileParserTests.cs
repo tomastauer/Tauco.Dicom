@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 using Castle.Windsor;
 
@@ -21,14 +23,14 @@ namespace Tauco.Dicom.Abstraction.FellowOak.Tests.Integration
 
 
         [Test]
-        public async void ParseDicomdir_PatientsAreParsedCorrectly()
+        public async Task ParseDicomdir_PatientsAreParsedCorrectly()
         {
             // Arrange + Act
-            var result = await mDicomdirFileParser.ParseDicomdirAsync("Assets/DICOMDIR");
+            var result = await mDicomdirFileParser.ParseDicomdirAsync(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets/DICOMDIR"));
             var patient = result.Patients.Single();
             var study = result.Studies.Single();
             var series = result.Series.Single();
-
+            
             // Assert
             Assert.That(patient.PatientName.ToString(), Is.EqualTo("John Doe"));
             Assert.That(patient.PatientID.StringRepresentationWithoutSlash, Is.EqualTo("9107256444"));

@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{62DD6F18-02FC-47AB-9430-05B4432D7ADB}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{48FED04A-EA2E-46DA-8F40-AFB60BB171BC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tauco.Dicom.Abstraction</RootNamespace>
-    <AssemblyName>Tauco.Dicom.Abstraction</AssemblyName>
+    <RootNamespace>Tester</RootNamespace>
+    <AssemblyName>Tester</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -38,6 +40,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -47,16 +50,18 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="dcmdir2dcm.Lib, Version=0.1.3.39577, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\dcmdir2dcm.0.1.3\lib\net46\dcmdir2dcm.Lib.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JetBrains.Annotations">
-      <HintPath>..\packages\JetBrains.Annotations.9.2.0\lib\net20\JetBrains.Annotations.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Abstractions, Version=2.0.0.117, Culture=neutral, PublicKeyToken=d480b5b72fb413da, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.Abstractions.2.0.0.117\lib\net40\System.IO.Abstractions.dll</HintPath>
@@ -70,34 +75,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Tauco.Dicom\Properties\GeneralAssemblyInfo.cs">
-      <Link>Properties\GeneralAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="IDicomClient.cs" />
-    <Compile Include="IDicomClientFactory.cs" />
-    <Compile Include="IDicomdirFileParser.cs" />
-    <Compile Include="IDicomFindRequest.cs" />
-    <Compile Include="IDicomInfoBuilder.cs" />
-    <Compile Include="IDicomMoveRequest.cs" />
-    <Compile Include="IDicomServer.cs" />
-    <Compile Include="IDicomServerFactory.cs" />
-    <Compile Include="IDicomTagAdapter.cs" />
-    <Compile Include="IDicomRequestAdapter.cs" />
+    <Compile Include="Installer.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tauco.Dicom.Shared\Tauco.Dicom.Shared.csproj">
-      <Project>{5B62E4D0-5AAB-488B-92AE-0C506958F3AD}</Project>
-      <Name>Tauco.Dicom.Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tauco.Dicom.Abstraction\Tauco.Dicom.Abstraction.csproj">
+      <Project>{62DD6F18-02FC-47AB-9430-05B4432D7ADB}</Project>
+      <Name>Tauco.Dicom.Abstraction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tauco.Dicom.Shared\Tauco.Dicom.Shared.csproj">
+      <Project>{5b62e4d0-5aab-488b-92ae-0c506958f3ad}</Project>
+      <Name>Tauco.Dicom.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tauco.DICOM\Tauco.Dicom.csproj">
+      <Project>{0B5C0580-D105-4464-9918-ACCD1940365D}</Project>
+      <Name>Tauco.Dicom</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>xcopy /y /d "$(TargetDir)$(TargetFileName)" "$(SolutionDir)bin\"</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

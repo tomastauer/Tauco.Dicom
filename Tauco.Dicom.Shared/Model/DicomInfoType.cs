@@ -7,6 +7,7 @@
     {
         Patient,
         Study,
-        Series
+        Series,
+        Image
     }
 }

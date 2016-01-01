@@ -52,6 +52,24 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
@@ -71,6 +89,10 @@
     </Reference>
     <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="dcmdir2dcm.Lib, Version=0.1.3.39577, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\dcmdir2dcm.0.1.3\lib\net46\dcmdir2dcm.Lib.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Esent.Collections, Version=1.9.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -114,12 +136,18 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.IO.Abstractions, Version=2.0.0.117, Culture=neutral, PublicKeyToken=d480b5b72fb413da, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Abstractions.2.0.0.117\lib\net40\System.IO.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IO\DicomdirFileCacheStoreProvider.cs" />
+    <Compile Include="IO\DicomdirImageStorageProvider.cs" />
     <Compile Include="IO\IDicomdirFileCacheStoreProvider.cs" />
+    <Compile Include="IO\IDicomdirImageStorageProvider.cs" />
     <Compile Include="Network\Query\IDicomQuery.cs" />
     <Compile Include="Properties\GeneralAssemblyInfo.cs" />
     <Compile Include="Network\DicomDataLoader.cs" />
@@ -157,7 +185,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="FodyWeavers.xml" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -188,13 +215,12 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\fo-dicom.1.1.0\build\fo-dicom.targets" Condition="Exists('..\packages\fo-dicom.1.1.0\build\fo-dicom.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\fo-dicom.1.1.0\build\fo-dicom.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\fo-dicom.1.1.0\build\fo-dicom.targets'))" />
     <Error Condition="!Exists('..\packages\Fody.1.29.3\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.3\build\dotnet\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\fo-dicom.Platform.2.0.0-beta3\build\net45\fo-dicom.Platform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\fo-dicom.Platform.2.0.0-beta3\build\net45\fo-dicom.Platform.targets'))" />
   </Target>
   <Import Project="..\packages\Fody.1.29.3\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.1.29.3\build\dotnet\Fody.targets')" />
   <UsingTask TaskName="CosturaCleanup" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" TaskFactory="CodeTaskFactory">
@@ -236,6 +262,7 @@ foreach (var item in filesToCleanup)
   <PropertyGroup>
     <PostBuildEvent>xcopy /y /d "$(TargetDir)$(TargetFileName)" "$(SolutionDir)bin\"</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\fo-dicom.Platform.2.0.0-beta3\build\net45\fo-dicom.Platform.targets" Condition="Exists('..\packages\fo-dicom.Platform.2.0.0-beta3\build\net45\fo-dicom.Platform.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
